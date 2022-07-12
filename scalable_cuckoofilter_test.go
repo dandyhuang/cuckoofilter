@@ -1,6 +1,7 @@
 package cuckoo
 
 import (
+	"fmt"
 	"strconv"
 	"testing"
 	"time"
@@ -34,7 +35,7 @@ func TestScalableCuckooFilter_DecodeEncode(t *testing.T) {
 	for i := 0; i < 100000; i++ {
 		filter.Insert([]byte("NewScalableCuckooFilter_" + strconv.Itoa(i)))
 		if i % 10000 == 0 {
-			filter.LoadFactor()
+			fmt.Println("load facotr:", filter.LoadFactor())
 		}
 	}
 	bytes := filter.Encode()
