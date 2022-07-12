@@ -33,6 +33,9 @@ func TestScalableCuckooFilter_DecodeEncode(t *testing.T) {
 	})
 	for i := 0; i < 100000; i++ {
 		filter.Insert([]byte("NewScalableCuckooFilter_" + strconv.Itoa(i)))
+		if i % 10000 == 0 {
+			filter.LoadFactor()
+		}
 	}
 	bytes := filter.Encode()
 	decodeFilter, err := DecodeScalableFilter(bytes)

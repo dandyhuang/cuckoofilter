@@ -3,6 +3,7 @@ package cuckoo
 import (
 	"bytes"
 	"encoding/gob"
+	"fmt"
 )
 
 const (
@@ -108,7 +109,12 @@ func (sf *ScalableCuckooFilter) Count() uint {
 		sum += filter.count
 	}
 	return sum
+}
 
+func (sf *ScalableCuckooFilter) LoadFactor() float32 {
+	lastFilter := sf.filters[len(sf.filters)-1]
+	fmt.Println("count:", lastFilter.count, " buckets:", len(lastFilter.buckets))
+	return float32(lastFilter.count) / float32(len(lastFilter.buckets))
 }
 
 func (sf *ScalableCuckooFilter) Encode() []byte {
