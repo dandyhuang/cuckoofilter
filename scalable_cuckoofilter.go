@@ -24,6 +24,18 @@ type Store struct {
 	LoadFactor float32
 }
 
+func WithLoadFactor(lf float32) option {
+	return func(o *ScalableCuckooFilter) {
+		o.loadFactor = lf
+	}
+}
+
+func WithScaleFactor(sf func(capacity uint) uint) option {
+	return func(o *ScalableCuckooFilter) {
+		o.scaleFactor = sf
+	}
+}
+
 /*
  by default option the grow capacity is:
  capacity , total

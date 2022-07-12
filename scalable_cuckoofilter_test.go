@@ -3,6 +3,7 @@ package cuckoo
 import (
 	"strconv"
 	"testing"
+	"time"
 )
 import "github.com/stretchr/testify/assert"
 
@@ -42,5 +43,5 @@ func TestScalableCuckooFilter_DecodeEncode(t *testing.T) {
 	for i, f := range decodeFilter.filters {
 		assert.Equal(t, f.count, filter.filters[i].count)
 	}
-
+	time.Sleep(time.Second*10)
 }
