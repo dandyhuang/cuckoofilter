@@ -8,7 +8,7 @@ import (
 
 const (
 	DefaultLoadFactor = 0.9
-	DefaultCapacity   = 10000
+	DefaultCapacity   = 20000
 )
 
 type ScalableCuckooFilter struct {
